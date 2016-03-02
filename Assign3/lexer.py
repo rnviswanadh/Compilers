@@ -6,11 +6,11 @@ import pprint
 import prettytable
 # List of token names.   This is always required
 
-keywords = ('BREAK', 'EXPORT', 'SUPER', 'CASE', 'EXTENDS', 'SWITCH', 'CLASS', 'FINALLY', 'THIS', 'CATCH', 'FOR', 'THROW', 'CONST', 'FUNCTION', 'TRY', 'CONTINUE', 'IF', 'TYPEOF', 'DEBUGGER', 'IMPORT', 'VAR', 'DEFAULT', 'IN', 'VOID', 'DELETE', 'INSTANCEOF', 'WHILE', 'DO', 'NEW', 'WITH', 'ELSE', 'RETURN', 'YIELD', 'EVAL', 'ALERT', 'CONSOLE', 'LOG');
+keywords = ('BREAK', 'EXPORT', 'SUPER', 'CASE', 'EXTENDS', 'SWITCH', 'CLASS', 'FINALLY', 'UNDEFINED', 'THIS', 'CATCH', 'FOR', 'THROW', 'CONST', 'FUNCTION', 'TRY', 'CONTINUE', 'IF', 'TYPEOF', 'DEBUGGER', 'IMPORT', 'VAR', 'DEFAULT', 'IN', 'VOID', 'DELETE', 'INSTANCEOF', 'WHILE', 'DO', 'NEW', 'WITH', 'ELSE', 'RETURN', 'YIELD', 'EVAL', 'ALERT', 'CONSOLE', 'LOG');
 
 tokens = (
 	# Punctuators
-	'DOT', 'COMMA', 'SEMICOLON', 'COLON', 'PLUS', 'MINUS', 'INTO', 'DIVIDE', 'NUMBER', 'MOD', 'BINAND', 'BINOR', 'BINXOR', 'BINNOT', 'CONDOP', 'NOT', 'LEFTPAREN', 'RIGHTPAREN', 'LEFTBRACE', 'RIGHTBRACE', 'LEFTBRACKET', 'RIGHTBRACKET', 'EQ', 'DOUBLEEQ', 'NOTEQUAL', 'STREQUAL', 'STRNEQUAL', 'LT', 'GT', 'LTE', 'GTE', 'OR', 'AND', 'INCR', 'DECR', 'LSHIFT', 'RSHIFT', 'URSHIFT', 'PLUSEQ', 'MINUSEQ', 'INTOEQ', 'DIVEQ',  'LSHIFTEQ', 'RSHIFTEQ', 'URSHIFTEQ', 'ANDEQ', 'MODEQ', 'XOREQ', 'OREQ', 'ID', 'STRING', 'LCOMMENT', 'BCOMMENT', 'GETPROP', 'SETPROP', 'REGEX', 'GETP', 'SETP'
+	'DOT', 'COMMA', 'SEMICOLON', 'COLON', 'PLUS', 'MINUS', 'INTO', 'EXPO', 'DIVIDE', 'NUMBER', 'MOD', 'BINAND', 'BINOR', 'BINXOR', 'BINNOT', 'CONDOP', 'NOT', 'LEFTPAREN', 'RIGHTPAREN', 'LEFTBRACE', 'RIGHTBRACE', 'LEFTBRACKET', 'RIGHTBRACKET', 'EQ', 'DOUBLEEQ', 'NOTEQUAL', 'STREQUAL', 'STRNEQUAL', 'LT', 'GT', 'LTE', 'GTE', 'OR', 'AND', 'INCR', 'DECR', 'LSHIFT', 'RSHIFT', 'URSHIFT', 'PLUSEQ', 'MINUSEQ', 'INTOEQ', 'DIVEQ',  'LSHIFTEQ', 'RSHIFTEQ', 'URSHIFTEQ', 'ANDEQ', 'MODEQ', 'XOREQ', 'OREQ', 'ID', 'STRING', 'LCOMMENT', 'BCOMMENT', 'GETPROP', 'SETPROP', 'REGEX', 'GETP', 'SETP'
 )+keywords
 
 keywords_dict = {keyword.lower(): keyword for keyword in keywords}
@@ -23,6 +23,7 @@ t_COLON         = r':'
 t_PLUS          = r'\+'				# over
 t_MINUS         = r'-'				# over
 t_INTO          = r'\*'       		# over
+t_EXPO			= r'\*\*'
 t_DIVIDE        = r'/'				# over
 t_MOD           = r'%' 				# over
 t_BINAND        = r'&'				# over
@@ -168,10 +169,11 @@ setp = r'set' + r'(?=\s' + identifier + r')'
 def t_SETP(token):
     return token
 
-lexer = lex.lex()
+lexer_global = lex.lex()
 
 # Give the lexer some input
 def lex_fun(data, toks):	
+	lexer = lex.lex()
 	lexer.input(data)
 	# Tokenize
 	count = 0
@@ -245,9 +247,9 @@ def symbol_table(toks):
 if __name__ == '__main__':
 	a = './' + sys.argv[1]
 	f = open(a, 'r')
-    	data = f.read()
+	data = f.read()
 	toks = []
-    	lex_fun(data, toks)
+	lex_fun(data, toks)
 	pprint.pprint(toks)
 	symbol_table(toks)
-	# pprint.pprint(toks)
+	
