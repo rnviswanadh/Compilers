@@ -189,6 +189,8 @@ def p_basicTypes(p):
 
 def p_functioncall(p):
 	'''functioncall : ID LEFTPAREN argList RIGHTPAREN'''
+	output.insert(0, p.slice)
+	use_case.insert(0, list(p.slice))
 
 def p_argList(p):
 	'''argList : expression
@@ -271,8 +273,13 @@ def get_token():
 	return tok
 
 if __name__ == '__main__':
+	if len(sys.argv)<2:
+		print 'Give input file PLEASEEEEEEEE....'
 	a = './' + sys.argv[1]
+	fp = './' + sys.argv[1][:len(sys.argv[1])-2]+'html'
+	# print fp
 	f = open(a, 'r')
+	fp = open(fp, 'wb')
 	data = f.read()
 	lex_fun(data, toks)
 	input = ""
@@ -320,25 +327,77 @@ if __name__ == '__main__':
 		for item in line:
 			a.insert(0, item)
 		output.append(list(a))
-	print NT
+	# print NT
 	for i in range(0, len(output)):
 		for j in range(0, len(output[i])):
 			if output[i][j] not in NT:
 				output[i][j] = output[i][j].value
 	print_output = []
+	# print output
+	# print len(output), len(use_case)
 	for out in output:
-		out_reverse = out.reverse()
-		flag = False
+		# print out
+		if output.index(out)==len(output)-1:
+			break
+		out_reverse = []
+		for a in out:
+			out_reverse.insert(0, a)
+		p = []
+		t = use_case[output.index(out)][0]
 		for a in out_reverse:
-			if not flag and a==use_case[0]
-				b = "<td>"+a+"</td>"
-		print out_reverse
-	# print "<table>"
-	# for out in output:
-	# 	print "<tr>"
-	# 	for a in out:
-	# 		print "<td>"+a+"</td>"
-	# 	print "</tr>"	
-	# print "</table>"
-	pprint.pprint(output)
-	pprint.pprint(use_case)
+			if a==t:
+				b = out.index(a)
+				p.insert(0,b)
+				p.append(len(use_case[output.index(out)])-1)
+				# print p
+				break
+		print_output.append(list(p))
+	
+	fp.write('''<!DOCTYPE html>
+				<html>
+				<head>
+					<title>Right Most Derivation</title>
+					<style type="text/css">
+						.expands{
+							color: #5714CE;
+						}
+						
+						td{
+							background: white;
+						}
+					</style>
+				</head>
+				<body>''')
+	fp.write('<table>')
+	for out in output:
+		if output.index(out)==len(output)-1:
+			break
+		fp.write('<tr>')
+		for a in out:
+			p = print_output[output.index(out)][0]
+			if out.index(a)==p:
+				if output.index(out)!=0:
+					l = print_output[output.index(out)-1]
+					if p>=l[0] and p<l[0]+l[1]:
+						fp.write('<td class="expands expanded">'+str(a)+'</td>')
+					else:
+						fp.write('<td class="expands">'+str(a)+'</td>')
+				else:
+					fp.write('<td class="expands expanded">'+str(a)+'</td>')
+			else:
+				if output.index(out)!=0:
+					l = print_output[output.index(out)-1]
+					if output.index(out)>=l[0] and output.index(out)<l[0]+l[1]:
+						fp.write('<td class="expanded">'+str(a)+'</td>')
+					else:
+						fp.write('<td>'+str(a)+'</td>')
+		fp.write('</tr>')
+	p = print_output[len(print_output)-1]
+	d = output[len(output)-1]
+	for a in d:
+		if d.index(a)>=p[0] and d.index(a)<p[0]+p[1]:
+			fp.write('<td class="expanded">'+str(a)+'</td>')
+		else:
+			fp.write('<td>'+str(a)+'</td>')
+	fp.write('</table></body>')
+	fp.write('</html>')
