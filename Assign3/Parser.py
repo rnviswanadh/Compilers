@@ -86,6 +86,8 @@ def p_reassignment(p):
 
 def p_arraydecl(p):
 	'''arraydecl : ID EQ LEFTBRACKET arrayList RIGHTBRACKET'''
+	output.insert(0, p.slice)
+	use_case.insert(0, list(p.slice))
 
 def p_arrayList(p):
 	'''arrayList : expression COMMA arrayList
@@ -93,6 +95,8 @@ def p_arrayList(p):
 				 | arraydecl
 				 | expression
 				 | '''
+	output.insert(0, p.slice)
+	use_case.insert(0, list(p.slice))
 
 # Precedence of Operators
 precedence = (
@@ -327,7 +331,7 @@ if __name__ == '__main__':
 		flag = False
 		for a in out_reverse:
 			if not flag and a==use_case[0]
-				
+				b = "<td>"+a+"</td>"
 		print out_reverse
 	# print "<table>"
 	# for out in output:
