@@ -41,7 +41,6 @@ def p_statement_semicolon(p):
 				 | if
 				 | ifelse
 				 | whileloop
-				 | forloop
  				 | funcdecl'''
 	output.insert(0, p.slice)
 	use_case.insert(0, list(p.slice))
@@ -222,24 +221,24 @@ def p_whileloop(p):
 	output.insert(0, p.slice)
 	use_case.insert(0, list(p.slice))
 
-def p_forloop(p):
-	'''forloop : FOR LEFTPAREN initialization SEMICOLON expression SEMICOLON increment RIGHTPAREN cblock'''
-	output.insert(0, p.slice)
-	use_case.insert(0, list(p.slice))
+# def p_forloop(p):
+# 	'''forloop : FOR LEFTPAREN initialization SEMICOLON expression SEMICOLON increment RIGHTPAREN cblock'''
+# 	output.insert(0, p.slice)
+# 	use_case.insert(0, list(p.slice))
 
-def p_initialization(p):
-	'''initialization : assignment SEMICOLON initialization
-					  | reassignment SEMICOLON initialization
-					  | assignment
-					  | reassignment'''
-	output.insert(0, p.slice)
-	use_case.insert(0, list(p.slice))
+# def p_initialization(p):
+# 	'''initialization : assignment SEMICOLON initialization
+# 					  | reassignment SEMICOLON initialization
+# 					  | assignment
+# 					  | reassignment'''
+# 	output.insert(0, p.slice)
+# 	use_case.insert(0, list(p.slice))
 
-def p_increment(p):
-	'''increment : reassignment SEMICOLON increment
-				 | reassignment'''
-	output.insert(0, p.slice)
-	use_case.insert(0, list(p.slice))
+# def p_increment(p):
+# 	'''increment : reassignment SEMICOLON increment
+# 				 | reassignment'''
+# 	output.insert(0, p.slice)
+# 	use_case.insert(0, list(p.slice))
 
 def p_funcdecl(p):
 	'''funcdecl : FUNCTION ID LEFTPAREN argList RIGHTPAREN cblock
