@@ -1,0 +1,1 @@
+var a = eval('var d = eval("var c = 3*5; console.log(eval(\'var yellow = 3;\'));"); console.log(d);');

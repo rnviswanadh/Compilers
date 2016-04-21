@@ -1,0 +1,51 @@
+B=, Temporarie0, 10
+=, Temporarie1, Temporarie0
+B=, Temporarie2, 5
++, Temporarie1, Temporarie2
+print, Temporarie1
+B=, Temporarie3, 5
+=, Temporarie5, Temporarie1
++, Temporarie5, Temporarie3
+=, Temporarie1, Temporarie5
+print, Temporarie1
+B=, Temporarie6, 1
++, Temporarie1, Temporarie6
+print, Temporarie1
+B=, Temporarie7, 12
+=, Temporarie9, Temporarie1
+-, Temporarie9, Temporarie7
+=, Temporarie1, Temporarie9
+print, Temporarie1
+B=, Temporarie10, 2
+-, Temporarie1, Temporarie10
+print, Temporarie1
+B=, Temporarie11, 3
+=, Temporarie13, Temporarie1
+*, Temporarie13, Temporarie11
+=, Temporarie1, Temporarie13
+print, Temporarie1
+B=, Temporarie14, 2
+=, Temporarie16, Temporarie1
+/, Temporarie16, Temporarie14
+=, Temporarie1, Temporarie16
+print, Temporarie1
+B=, Temporarie17, 2
+=, Temporarie19, Temporarie1
+%, Temporarie19, Temporarie17
+=, Temporarie1, Temporarie19
+print, Temporarie1
+B=, Temporarie20, 5
+=, Temporarie21, Temporarie20
+B=, Temporarie22, 6
+=, Temporarie23, Temporarie22
+=, Temporarie25, Temporarie21
++, Temporarie25, Temporarie23
+=, Temporarie26, Temporarie25
+print, Temporarie21
+print, Temporarie23
+print, Temporarie26
+=, Temporarie28, Temporarie21
++, Temporarie28, Temporarie23
+=, Temporarie30, Temporarie28
++, Temporarie30, Temporarie26
+print, Temporarie30

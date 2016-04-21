@@ -1,0 +1,51 @@
+1, B=, Temporarie0, 10
+2, =, Temporarie1, Temporarie0
+3, B=, Temporarie2, 5
+4, +, Temporarie1, Temporarie2
+5, print, Temporarie1
+6, B=, Temporarie3, 5
+7, =, Temporarie5, Temporarie1
+8, +, Temporarie5, Temporarie3
+9, =, Temporarie1, Temporarie5
+10, print, Temporarie1
+11, B=, Temporarie6, 1
+12, +, Temporarie1, Temporarie6
+13, print, Temporarie1
+14, B=, Temporarie7, 12
+15, =, Temporarie9, Temporarie1
+16, -, Temporarie9, Temporarie7
+17, =, Temporarie1, Temporarie9
+18, print, Temporarie1
+19, B=, Temporarie10, 2
+20, -, Temporarie1, Temporarie10
+21, print, Temporarie1
+22, B=, Temporarie11, 3
+23, =, Temporarie13, Temporarie1
+24, *, Temporarie13, Temporarie11
+25, =, Temporarie1, Temporarie13
+26, print, Temporarie1
+27, B=, Temporarie14, 2
+28, =, Temporarie16, Temporarie1
+29, /, Temporarie16, Temporarie14
+30, =, Temporarie1, Temporarie16
+31, print, Temporarie1
+32, B=, Temporarie17, 2
+33, =, Temporarie19, Temporarie1
+34, %, Temporarie19, Temporarie17
+35, =, Temporarie1, Temporarie19
+36, print, Temporarie1
+37, B=, Temporarie20, 5
+38, =, Temporarie21, Temporarie20
+39, B=, Temporarie22, 6
+40, =, Temporarie23, Temporarie22
+41, =, Temporarie25, Temporarie21
+42, +, Temporarie25, Temporarie23
+43, =, Temporarie26, Temporarie25
+44, print, Temporarie21
+45, print, Temporarie23
+46, print, Temporarie26
+47, =, Temporarie28, Temporarie21
+48, +, Temporarie28, Temporarie23
+49, =, Temporarie30, Temporarie28
+50, +, Temporarie30, Temporarie26
+51, print, Temporarie30
