@@ -1,3 +1,0 @@
-python src/codegen.py bin/basicBlock > bin/basicBlock.s 
-as --32 bin/basicBlock.s -o bin/basicBlock.o
-ld -m elf_i386 bin/basicBlock.o -o bin/key1 -lc -dynamic-linker /lib/ld-linux.so.2
